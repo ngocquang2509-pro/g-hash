@@ -1,0 +1,34 @@
+<View>
+  <View style="display:flex; gap:24px; align-items:flex-start;">
+    <Image name="image" value="$image" maxWidth="900px" />
+
+    <View>
+      <Header value="Context" />
+      <Text value="Split: $split" />
+      <Text value="Role: $retrieval_role" />
+      <Text value="Camera: $camera_id" />
+      <Text value="Video: $video_id" />
+      <Text value="Time (s): $timestamp_sec" />
+      <Text value="Distance: $distance_bucket" />
+      <Text value="Quality: $quality_score" />
+
+      <Header value="Concepts (multi-label)" />
+      <Choices name="concepts" toName="image" choice="multiple" showInLine="false">
+        <Choice value="using phone" />
+        <Choice value="dozing off" />
+        <Choice value="turning sideways" />
+        <Choice value="turning back" />
+        <Choice value="raising hand" />
+        <Choice value="opening book" />
+        <Choice value="reading" />
+        <Choice value="writing" />
+        <Choice value="listening" />
+        <Choice value="head down" />
+        <Choice value="sitting" />
+        <Choice value="standing" />
+        <Choice value="walking" />
+        <Choice value="interacting" />
+      </Choices>
+    </View>
+  </View>
+</View>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-Hash Vision | Educational Behavior Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>G-Hash <span class="gradient-text">Vision</span></h1>
+            <p>Advanced Deep Hashing for Educational Behavior Retrieval</p>
+        </header>
+
+        <main>
+            <div class="upload-section glass-panel" id="drop-area">
+                <input type="file" id="file-input" accept="image/*" hidden>
+                <div class="upload-content">
+                    <svg class="upload-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                    <h3>Drag & Drop your image here</h3>
+                    <p>or</p>
+                    <button class="btn-primary" id="browse-btn">Browse Files</button>
+                </div>
+                <img id="preview-image" src="" alt="Preview" style="display: none;" title="Bấm vào để chọn ảnh khác">
+            </div>
+
+            <div class="loading-state" id="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing behavior & searching database...</p>
+            </div>
+
+            <div class="results-section" id="results-section" style="display: none;">
+                <!-- Classification Results -->
+                <div class="classification-panel glass-panel">
+                    <h2>Behavior Analysis</h2>
+                    <div id="predictions-container" class="predictions-list">
+                        <!-- Bars injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Retrieval Results -->
+                <div class="retrieval-panel glass-panel">
+                    <h2>Similar Contexts Found</h2>
+                    <div class="grid" id="retrieval-grid">
+                        <!-- Cards injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Powered by Graph Attention Hashing (G-Hash)</p>
+        </footer>
+    </div>
+
+    <!-- Lightbox Modal (Phóng to ảnh) -->
+    <div id="lightbox-modal" class="lightbox" style="display: none;">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

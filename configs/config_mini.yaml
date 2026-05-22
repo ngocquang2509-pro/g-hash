@@ -1,0 +1,47 @@
+# NUS-WIDE-MINI Config - Quick Testing
+# Small dataset with 7 classes for rapid experimentation
+
+dataset:
+  name: "NUS-WIDE-MINI"
+  data_root: "data/NUS-WIDE-MINI"
+  num_classes: 7       # Top 7 classes only
+  train_size: 500      # 500 training samples
+  test_size: 100       # 100 test samples
+  query_size: 50       # 50 queries
+  image_size: 224
+  
+model:
+  hash_bits: 32        # Reduced to 32-bit hash codes
+  image_encoder: "vit_base_patch16_224"
+  text_embed_dim: 300
+  hidden_dim: 256      # Smaller hidden dim
+  dropout: 0.1
+  
+gat:
+  num_heads: 2         # Reduced to 2-head attention
+  num_layers: 2        # 2-layer GAT
+  hidden_dim: 128      # Smaller GAT hidden dim
+  dropout: 0.1
+  
+training:
+  batch_size: 16       # Smaller batch for quick training
+  num_epochs: 30       # More epochs for better convergence
+  learning_rate: 0.0001
+  weight_decay: 0.001  # Increased regularization to prevent overfitting
+  warmup_epochs: 3
+  early_stopping_patience: 10
+  
+loss:
+  alpha_similarity: 5.0
+  beta_quantization: 0.1  # Increased from 0.1 to prevent hash collapse
+  gamma_classification: 1.0
+  
+evaluation:
+  top_k: [50, 100]     # Smaller K values for small dataset
+  hamming_radius: 2
+  
+device: "cuda"  # Will auto-detect MPS for Mac
+seed: 42
+num_workers: 0
+log_interval: 2
+save_dir: "experiments/mini_runs"

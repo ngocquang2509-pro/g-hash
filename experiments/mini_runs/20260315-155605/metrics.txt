@@ -1,0 +1,56 @@
+============================================================
+EVALUATION METRICS
+============================================================
+
+mAP@50: 0.7559
+mAP@100: 0.7356
+mAP: 0.7356
+P@50: 0.6964
+R@50: 0.5876
+P@100: 0.5992
+R@100: 1.0000
+
+============================================================
+CONFIGURATION
+============================================================
+
+dataset:
+  data_root: data/NUS-WIDE-MINI
+  image_size: 224
+  name: NUS-WIDE-MINI
+  num_classes: 7
+  query_size: 50
+  test_size: 100
+  train_size: 500
+device: cuda
+evaluation:
+  hamming_radius: 2
+  top_k:
+  - 50
+  - 100
+gat:
+  dropout: 0.1
+  hidden_dim: 128
+  num_heads: 2
+  num_layers: 2
+log_interval: 2
+loss:
+  alpha_similarity: 5.0
+  beta_quantization: 0.1
+  gamma_classification: 1.0
+model:
+  dropout: 0.1
+  hash_bits: 32
+  hidden_dim: 256
+  image_encoder: vit_base_patch16_224
+  text_embed_dim: 300
+num_workers: 0
+save_dir: experiments/mini_runs
+seed: 42
+training:
+  batch_size: 16
+  early_stopping_patience: 10
+  learning_rate: 0.0001
+  num_epochs: 30
+  warmup_epochs: 3
+  weight_decay: 0.001

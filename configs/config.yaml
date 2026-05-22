@@ -1,0 +1,53 @@
+# THE ULTIMATE G-HASH TRAINING CONFIGURATION (ANTI-COLLAPSE V3)
+# Tối ưu hóa tuyệt đối cho kho dữ liệu Khổng lồ đa nhãn NUS-WIDE 2
+# -----------------------------------------------------------------------------
+
+dataset:
+  name: "NUS-WIDE 2"
+  data_root: "data/NUS-WIDE 2"
+  num_classes: 21
+  train_size: 193734
+  test_size: 2100
+  query_size: 2100
+  image_size: 224
+  
+model:
+  hash_bits: 64
+  image_encoder: "vit_base_patch16_224"
+  pretrained: true
+  text_embed_dim: 300
+  hidden_dim: 512
+  dropout: 0.15
+  
+gat:
+  num_heads: 4
+  num_layers: 2
+  hidden_dim: 256
+  dropout: 0.15
+  
+training:
+  batch_size: 32
+  num_epochs: 120
+  learning_rate: 0.00003
+  weight_decay: 0.0001
+  warmup_epochs: 2
+  early_stopping_patience: 15
+  
+loss:
+  alpha_similarity: 0.3
+  beta_quantization: 0.1
+  eta_retrieval: 0.5
+  gamma_classification: 1.5
+  delta_bit_balance: 1.0
+  
+evaluation:
+  database_split: train
+  top_k: [100, 500, 1000]
+  hamming_radius: 2
+  rerank_k: 100
+  
+device: "cuda"
+seed: 42
+num_workers: 4  
+log_interval: 10
+save_dir: "experiments/runs"

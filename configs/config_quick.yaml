@@ -1,0 +1,47 @@
+# Quick training config - 2K samples, 15 epochs
+# Real labels + Synthetic images for faster training
+
+dataset:
+  name: "NUS-WIDE"
+  data_root: "data/NUS-WIDE"
+  num_classes: 81
+  train_size: 2000    # 2K training samples
+  test_size: 1000     # 1K test samples
+  query_size: 500     # 500 queries
+  image_size: 224
+  
+model:
+  hash_bits: 64       # 64-bit hash codes
+  image_encoder: "vit_base_patch16_224"
+  text_embed_dim: 300
+  hidden_dim: 512
+  dropout: 0.1
+  
+gat:
+  num_heads: 4        # 4-head attention
+  num_layers: 2       # 2-layer GAT
+  hidden_dim: 256
+  dropout: 0.1
+  
+training:
+  batch_size: 32      # 32 samples per batch
+  num_epochs: 15      # 15 epochs total
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  warmup_epochs: 2
+  early_stopping_patience: 8
+  
+loss:
+  alpha_similarity: 1.0
+  beta_quantization: 0.1
+  gamma_classification: 1.0
+  
+evaluation:
+  top_k: [100, 500]   # Smaller K values
+  hamming_radius: 2
+  
+device: "cuda"  # Will auto-detect MPS for Mac
+seed: 42
+num_workers: 0  # Set to 0 to avoid multiprocessing issues on Mac
+log_interval: 5
+save_dir: "experiments/runs"

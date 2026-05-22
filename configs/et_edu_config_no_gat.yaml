@@ -1,0 +1,54 @@
+# G-hash Configuration - Ablation Study (w/o GAT)
+
+dataset:
+  name: "ET-EDU"
+  data_root: "data"
+  num_classes: 14             # 14 nhãn hành vi lớp học
+  label_file: "data/edu_labels.txt"
+  image_size: 224
+
+model:
+  image_encoder: "vit_base_patch16_224"
+  pretrained: true
+  hash_bits: 64
+  text_embed_dim: 300
+  hidden_dim: 512
+  dropout: 0.15
+
+gat:
+  use_gat: false              # Vô hiệu hóa GAT
+  num_heads: 4
+  num_layers: 2
+  hidden_dim: 256
+  dropout: 0.15
+
+training:
+  batch_size: 32
+  num_epochs: 120
+  learning_rate: 0.00003
+  weight_decay: 0.0001
+  warmup_epochs: 2
+  early_stopping_patience: 15
+
+loss:
+  alpha_similarity: 0.3
+  beta_quantization: 0.1
+  eta_retrieval: 0.5
+  gamma_classification: 1.5
+  delta_bit_balance: 1.0     
+
+evaluation:
+  database_split: train
+  top_k: [10, 50, 100]
+  hamming_radius: 2
+  rerank_k: 100
+  query_auto_focus: true
+  mmr_lambda: 0.75
+  max_per_video_in_topk: 2
+  min_frame_gap_in_topk: 45
+
+device: "cuda"
+seed: 42
+num_workers: 4
+log_interval: 10
+save_dir: "experiments/runs_no_gat"

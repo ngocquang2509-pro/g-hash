@@ -1,0 +1,59 @@
+============================================================
+EVALUATION METRICS
+============================================================
+
+mAP@10: 0.7142
+mAP@50: 0.6224
+mAP@100: 0.5878
+mAP: 0.4604
+P@10: 0.5521
+R@10: 0.0367
+P@50: 0.5309
+R@50: 0.1598
+P@100: 0.5191
+R@100: 0.2957
+
+============================================================
+CONFIGURATION
+============================================================
+
+dataset:
+  data_root: data
+  image_size: 224
+  name: ET-EDU
+  num_classes: 10
+device: cuda
+evaluation:
+  hamming_radius: 2
+  top_k:
+  - 10
+  - 50
+  - 100
+gat:
+  dropout: 0.15
+  hidden_dim: 256
+  num_heads: 4
+  num_layers: 2
+log_interval: 10
+loss:
+  alpha_similarity: 0.3
+  beta_quantization: 0.1
+  delta_bit_balance: 1.0
+  gamma_classification: 1.5
+model:
+  dropout: 0.15
+  hash_bits: 64
+  hidden_dim: 512
+  image_encoder: vit_base_patch16_224
+  pretrained: true
+  text_embed_dim: 300
+num_workers: 4
+save_dir: experiments/runs
+seed: 42
+training:
+  batch_size: 32
+  early_stopping_patience: 15
+  learning_rate: 3.0e-05
+  num_epochs: 120
+  warmup_epochs: 2
+  weight_decay: 0.0001
